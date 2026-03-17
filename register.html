@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Register | Stackly</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+
+:root{
+--primary:#3ea6ff;
+--dark:#111;
+--light:#fff;
+--gray:#6b6b6b;
+--bg:#f5f7f6;
+}
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:#f5f7f6;
+min-height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+padding:30px;
+overflow-x:hidden;
+}
+
+/* PRELOADER */
+
+#preloader{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100vh;
+background:#fff;
+display:flex;
+align-items:center;
+justify-content:center;
+z-index:9999;
+transition:opacity .4s ease;
+}
+
+.loader-logo{
+width:120px;
+animation:spinLogo 1.6s ease-in-out infinite;
+}
+
+@keyframes spinLogo{
+0%{transform:scale(.85) rotate(0);opacity:.6}
+50%{transform:scale(1.05) rotate(180deg);opacity:1}
+100%{transform:scale(.85) rotate(360deg);opacity:.6}
+}
+
+/* WRAPPER */
+
+.auth-wrapper{
+width:100%;
+max-width:760px;
+margin:auto;
+}
+
+.back-home{
+display:flex;
+align-items:center;
+gap:8px;
+margin-bottom:20px;
+color:#334155;
+text-decoration:none;
+font-size:14px;
+}
+
+.back-home:hover{
+color:var(--primary);
+}
+
+/* CARD */
+
+.auth-card{
+background:#fff;
+padding:40px;
+border-radius:20px;
+box-shadow:0 20px 45px rgba(0,0,0,.08);
+width:100%;
+}
+
+/* LOGO */
+
+.auth-logo{
+text-align:center;
+margin-bottom:10px;
+}
+
+.auth-logo img{
+height:55px;
+}
+
+.logo-circle{
+width:70px;
+height:70px;
+margin:15px auto;
+border-radius:50%;
+background:linear-gradient(135deg,#2563eb,#9333ea);
+display:flex;
+align-items:center;
+justify-content:center;
+color:white;
+font-size:26px;
+}
+
+/* TEXT */
+
+.auth-card h2{
+text-align:center;
+color:#0f172a;
+margin-bottom:5px;
+}
+
+.auth-sub{
+text-align:center;
+color:#64748b;
+margin-bottom:30px;
+}
+
+/* GRID */
+
+.form-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:20px;
+width:100%;
+}
+
+/* INPUT GROUP */
+
+.input-group{
+margin-bottom:20px;
+width:100%;
+}
+
+.input-group label{
+display:block;
+margin-bottom:6px;
+font-size:14px;
+}
+
+/* INPUT BOX */
+
+.input-box{
+display:flex;
+align-items:center;
+border:1px solid #e2e8f0;
+border-radius:10px;
+height:46px;
+padding:0 12px;
+background:#fff;
+width:100%;
+max-width:100%;
+overflow:hidden;
+}
+
+.input-box i{
+color:#94a3b8;
+margin-right:10px;
+flex-shrink:0;
+}
+
+/* INPUT */
+
+.input-box input,
+.input-box select{
+border:none;
+outline:none;
+flex:1;
+min-width:0;
+font-size:14px;
+background:transparent;
+width:100%;
+}
+
+/* EYE ICON */
+
+.input-box span{
+cursor:pointer;
+color:#64748b;
+margin-left:8px;
+flex-shrink:0;
+}
+
+/* TERMS */
+
+.terms{
+margin:15px 0;
+font-size:14px;
+color:#475569;
+}
+
+.terms a{
+color:#2563eb;
+text-decoration:none;
+}
+
+/* BUTTON */
+
+.btn-primary{
+width:100%;
+padding:14px;
+border:none;
+border-radius:10px;
+background:linear-gradient(90deg,#2563eb,#9333ea);
+color:white;
+font-weight:600;
+cursor:pointer;
+margin-top:10px;
+}
+
+.btn-primary:hover{
+transform:translateY(-2px);
+}
+
+.auth-link{
+text-align:center;
+margin-top:20px;
+}
+
+.auth-link a{
+color:#2563eb;
+font-weight:600;
+text-decoration:none;
+}
+
+.error{
+color:#ef4444;
+font-size:12px;
+margin-top:4px;
+display:none;
+}
+
+/* MOBILE FIX */
+
+@media(max-width:700px){
+
+body{
+padding:15px;
+}
+
+.form-grid{
+grid-template-columns:1fr;
+gap:15px;
+}
+
+.auth-card{
+padding:25px;
+}
+
+.input-box{
+height:48px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="preloader">
+<img src="assets/images/logo/stackly_logo.webp" class="loader-logo">
+</div>
+
+<div class="auth-wrapper">
+
+<a href="index.html" class="back-home">
+<i class="fa-solid fa-arrow-left"></i> Back to Home
+</a>
+
+<div class="auth-card">
+
+<div class="auth-logo">
+<img src="assets/images/logo/stackly_logo.webp">
+</div>
+
+<div class="logo-circle">
+<i class="fa-solid fa-dna"></i>
+</div>
+
+<h2>Create Your Account</h2>
+<p class="auth-sub">Join BioTech Labs and start your research journey</p>
+
+<form id="registerForm">
+
+<div class="form-grid">
+
+<div class="input-group">
+<label>Full Name</label>
+<div class="input-box">
+<i class="fa-regular fa-user"></i>
+<input type="text" placeholder="Dr. Jane Smith">
+</div>
+</div>
+
+<div class="input-group">
+<label>Role</label>
+<div class="input-box">
+<select>
+<option>Researcher</option>
+<option>Clinician</option>
+<option>Lab Technician</option>
+<option>Patient</option>
+</select>
+</div>
+</div>
+
+</div>
+
+<div class="input-group">
+<label>Email Address</label>
+<div class="input-box">
+<i class="fa-regular fa-envelope"></i>
+<input type="email" id="email" placeholder="you@institution.edu">
+</div>
+<p id="emailError" class="error">Invalid email</p>
+</div>
+
+<div class="input-group">
+<label>Organization / Institution</label>
+<div class="input-box">
+<i class="fa-regular fa-building"></i>
+<input type="text" placeholder="MIT, Stanford University, etc.">
+</div>
+</div>
+
+<div class="form-grid">
+
+<div class="input-group">
+<label>Password</label>
+<div class="input-box">
+<i class="fa-solid fa-lock"></i>
+<input type="password" id="password">
+<span id="togglePass1"><i class="fa-regular fa-eye"></i></span>
+</div>
+<p id="passError" class="error">Weak password</p>
+</div>
+
+<div class="input-group">
+<label>Confirm Password</label>
+<div class="input-box">
+<i class="fa-solid fa-lock"></i>
+<input type="password" id="confirmPassword">
+<span id="togglePass2"><i class="fa-regular fa-eye"></i></span>
+</div>
+<p id="confirmError" class="error">Passwords do not match</p>
+</div>
+
+</div>
+
+<div class="terms">
+<input type="checkbox"> I agree to the
+<a href="#">Terms of Service</a> and
+<a href="#">Privacy Policy</a>
+</div>
+
+<button type="submit" class="btn-primary">Create Account</button>
+
+<div class="auth-link">
+Already have an account? <a href="login.html">Login</a>
+</div>
+
+</form>
+
+</div>
+</div>
+
+<script>
+
+window.addEventListener("load",()=>{
+const loader=document.getElementById("preloader");
+setTimeout(()=>{
+loader.style.opacity="0";
+setTimeout(()=>{loader.style.display="none";},400);
+},700);
+});
+
+/* PASSWORD TOGGLE */
+
+const password=document.getElementById("password");
+const confirmPassword=document.getElementById("confirmPassword");
+
+document.getElementById("togglePass1").onclick=()=>{
+password.type=password.type==="password"?"text":"password";
+};
+
+document.getElementById("togglePass2").onclick=()=>{
+confirmPassword.type=confirmPassword.type==="password"?"text":"password";
+};
+
+/* VALIDATION */
+
+const email=document.getElementById("email");
+const emailError=document.getElementById("emailError");
+const passError=document.getElementById("passError");
+const confirmError=document.getElementById("confirmError");
+
+const emailPattern=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const passPattern=/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/;
+
+document.getElementById("registerForm").addEventListener("submit",(e)=>{
+
+e.preventDefault();
+let valid=true;
+
+if(!emailPattern.test(email.value)){
+emailError.style.display="block";
+valid=false;
+}else emailError.style.display="none";
+
+if(!passPattern.test(password.value)){
+passError.style.display="block";
+valid=false;
+}else passError.style.display="none";
+
+if(password.value!==confirmPassword.value){
+confirmError.style.display="block";
+valid=false;
+}else confirmError.style.display="none";
+
+if(valid){
+window.location.href="login.html";
+}
+
+});
+
+</script>
+
+</body>
+</html>

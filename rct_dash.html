@@ -1,0 +1,1339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Researcher Dashboard | Stackly</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:"Segoe UI",sans-serif;
+}
+
+body{
+background:#f5f9ff;
+color:#0f172a;
+overflow-x:hidden;
+}
+
+html,body{
+max-width:100%;
+overflow-x:hidden;
+}
+
+/* HEADER */
+
+header{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:80px;
+display:flex;
+align-items:center;
+padding:0 40px;
+background:white;
+box-shadow:0 4px 20px rgba(0,0,0,.05);
+z-index:1000;
+}
+
+.logo img{
+height:42px;
+}
+
+/* DASHBOARD LAYOUT */
+
+.dashboard{
+display:flex;
+margin-top:80px;
+}
+
+/* SIDEBAR */
+
+.sidebar{
+width:240px;
+background:white;
+border-right:1px solid #e2e8f0;
+height:calc(100vh - 80px);
+padding:30px 20px;
+position:fixed;
+top:80px;
+left:0;
+}
+
+.sidebar h3{
+font-size:14px;
+margin-bottom:20px;
+color:#64748b;
+}
+
+.sidebar a{
+display:flex;
+align-items:center;
+gap:12px;
+padding:12px 12px;
+border-radius:8px;
+text-decoration:none;
+color:#334155;
+margin-bottom:6px;
+font-size:14px;
+}
+
+.sidebar a:hover{
+background:#eaf3ff;
+color:#3ea6ff;
+}
+
+.sidebar a.active{
+background:#eaf3ff;
+color:#3ea6ff;
+}
+
+/* MAIN CONTENT */
+
+.main{
+margin-left:240px;
+padding:40px;
+width:100%;
+}
+
+/* TOP BAR */
+
+.topbar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:30px;
+}
+
+.search{
+background:white;
+border-radius:30px;
+padding:10px 18px;
+display:flex;
+align-items:center;
+gap:10px;
+width:420px;
+border:1px solid #e2e8f0;
+}
+
+.search input{
+border:none;
+outline:none;
+width:100%;
+}
+
+.user{
+display:flex;
+align-items:center;
+gap:16px;
+}
+
+.bell{
+position:relative;
+font-size:18px;
+cursor:pointer;
+}
+
+.bell span{
+position:absolute;
+top:-6px;
+right:-6px;
+background:red;
+color:white;
+font-size:10px;
+padding:2px 6px;
+border-radius:20px;
+}
+
+.profile{
+display:flex;
+align-items:center;
+gap:8px;
+}
+
+/* WELCOME */
+
+.welcome{
+margin-bottom:30px;
+}
+
+.welcome h1{
+font-size:28px;
+margin-bottom:6px;
+}
+
+.welcome p{
+color:#64748b;
+}
+
+/* CARDS */
+
+.cards{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:20px;
+margin-bottom:30px;
+}
+
+.card{
+background:white;
+padding:24px;
+border-radius:14px;
+border:1px solid #e2e8f0;
+}
+
+.card i{
+font-size:24px;
+margin-bottom:12px;
+color:#3ea6ff;
+}
+
+.card h2{
+font-size:26px;
+margin:6px 0;
+}
+
+.card a{
+text-decoration:none;
+color:#3ea6ff;
+font-size:14px;
+}
+
+/* RESULTS */
+
+.results{
+background:white;
+border-radius:16px;
+padding:25px;
+margin-bottom:30px;
+border:1px solid #e2e8f0;
+}
+
+.test{
+background:#f8fbff;
+border-radius:10px;
+padding:18px;
+margin-top:16px;
+border-left:4px solid #3ea6ff;
+}
+
+.test h3{
+margin-bottom:6px;
+}
+
+.test p{
+color:#64748b;
+font-size:14px;
+margin-bottom:12px;
+}
+
+.test button{
+background:#0f172a;
+color:white;
+border:none;
+padding:8px 16px;
+border-radius:6px;
+cursor:pointer;
+}
+
+.status{
+position:absolute;
+right:20px;
+top:18px;
+padding:4px 10px;
+border-radius:20px;
+font-size:12px;
+}
+
+.completed{
+background:#16a34a;
+color:white;
+}
+
+.test{
+position:relative;
+}
+
+/* GRID SECTIONS */
+
+.grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:20px;
+margin-bottom:30px;
+}
+
+.panel{
+background:white;
+border-radius:14px;
+padding:20px;
+border:1px solid #e2e8f0;
+}
+
+.panel h3{
+margin-bottom:16px;
+}
+
+/* APPOINTMENT */
+
+.appointment{
+background:#f8fbff;
+padding:14px;
+border-radius:10px;
+}
+
+/* BILLING */
+
+.bill{
+display:flex;
+justify-content:space-between;
+margin-bottom:12px;
+}
+
+/* AI BOX */
+
+.ai{
+background:linear-gradient(135deg,#6b21a8,#2563eb);
+color:white;
+padding:30px;
+border-radius:16px;
+}
+
+.ai-item{
+background:rgba(255,255,255,0.1);
+padding:14px;
+border-radius:10px;
+margin-top:10px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:1000px){
+
+.cards{
+grid-template-columns:1fr;
+}
+
+.grid{
+grid-template-columns:1fr;
+}
+
+}
+
+@media(max-width:768px){
+
+.sidebar{
+width:70px;
+}
+
+.sidebar a span{
+display:none;
+}
+
+.main{
+margin-left:70px;
+padding:25px;
+}
+
+.search{
+width:220px;
+}
+
+}
+
+/* HEADER */
+
+.dash-header{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:80px;
+
+display:flex;
+align-items:center;
+justify-content:space-between;
+
+padding:0 40px;
+
+background:white;
+box-shadow:0 4px 20px rgba(0,0,0,.05);
+
+z-index:1000;
+}
+
+/* LOGO */
+
+.logo img{
+height:42px;
+}
+
+/* SEARCH BAR */
+
+.header-search{
+display:flex;
+align-items:center;
+gap:10px;
+
+background:#f1f5f9;
+
+padding:10px 18px;
+border-radius:30px;
+
+width:420px;
+}
+
+.header-search input{
+border:none;
+outline:none;
+background:transparent;
+width:100%;
+}
+
+/* HEADER ACTIONS */
+
+.header-actions{
+display:flex;
+align-items:center;
+gap:20px;
+}
+
+/* BELL */
+
+.bell{
+position:relative;
+font-size:18px;
+cursor:pointer;
+}
+
+.bell span{
+position:absolute;
+top:-6px;
+right:-6px;
+
+background:red;
+color:white;
+
+font-size:10px;
+padding:2px 6px;
+
+border-radius:20px;
+}
+
+/* PROFILE */.profile{
+display:flex;
+align-items:center;
+gap:10px;
+}
+
+/* PROFILE TEXT */
+
+.profile-info{
+display:flex;
+flex-direction:column;
+line-height:1.2;
+}
+
+.profile-name{
+font-weight:600;
+font-size:14px;
+}
+
+.profile-email{
+font-size:12px;
+color:#64748b;
+}
+
+.profile{
+display:flex;
+align-items:center;
+gap:8px;
+font-weight:500;
+}
+
+.logout{
+margin-top:20px;
+color:#ef4444;
+}
+
+.logout:hover{
+background:#fee2e2;
+color:#dc2626;
+}
+
+.quick-stats{
+background:#eef2ff;
+padding:20px;
+border-radius:12px;
+margin-top:30px;
+}
+
+.quick-stats h4{
+margin-bottom:12px;
+color:#334155;
+}
+
+.stat{
+display:flex;
+justify-content:space-between;
+font-size:14px;
+margin-bottom:6px;
+}
+
+.test button{
+background:#0f172a;
+color:white;
+border:none;
+outline:none;
+padding:8px 16px;
+border-radius:6px;
+cursor:pointer;
+display:inline-block;
+}
+
+.bell{
+position:relative;
+font-size:18px;
+cursor:pointer;
+transition:0.2s;
+}
+
+.bell:hover{
+transform:scale(1.08);
+}
+
+/* ===== LARGE DESKTOP ===== */
+@media (min-width:1400px){
+
+.main{
+padding:50px;
+}
+
+.cards{
+grid-template-columns:repeat(3,1fr);
+}
+
+}
+
+/* ===== LAPTOP ===== */
+@media (max-width:1200px){
+
+.header-search{
+width:320px;
+}
+
+.cards{
+grid-template-columns:repeat(2,1fr);
+}
+
+.grid{
+grid-template-columns:1fr;
+}
+
+}
+
+/* ===== SMALL LAPTOP / PALMTOP ===== */
+@media (max-width:992px){
+
+.sidebar{
+width:200px;
+}
+
+.main{
+margin-left:200px;
+padding:30px;
+}
+
+.header-search{
+width:260px;
+}
+
+.cards{
+grid-template-columns:1fr;
+}
+
+}
+
+@media (max-width:992px){
+
+.sidebar{
+width:70px;
+padding:20px 10px;
+}
+
+.sidebar h3{
+display:none;
+}
+
+.sidebar a{
+justify-content:center;
+}
+
+.sidebar a span{
+display:none;
+}
+
+.main{
+margin-left:70px;
+}
+
+}
+
+/* ===== TABLET ===== */
+@media (max-width:768px){
+
+.sidebar{
+width:70px;
+padding:20px 10px;
+}
+
+.main{
+margin-left:70px;
+padding:20px;
+}
+
+.header-search{
+width:200px;
+}
+
+.profile-email{
+display:none;
+}
+
+}
+
+.results,
+.panel,
+.ai{
+width:100%;
+}
+
+/* HAMBURGER BUTTON */
+
+.menu-toggle{
+display:none;
+border:none;
+background:none;
+font-size:24px;
+cursor:pointer;
+padding:6px;
+}
+
+/* ===== MOBILE SIDEBAR ===== */
+
+@media (max-width:768px){
+
+.menu-toggle{
+display:block;
+}
+
+.header-search{
+display:none;
+}
+
+.profile-email{
+display:none;
+}
+
+.sidebar{
+position:fixed;
+left:-260px;
+top:80px;
+width:240px;
+height:calc(100vh - 80px);
+background:white;
+transition:0.35s ease;
+z-index:2000;
+box-shadow:8px 0 25px rgba(0,0,0,.15);
+}
+
+.sidebar.active{
+left:0;
+}
+
+.main{
+margin-left:0;
+padding:20px;
+}
+
+}
+
+/* OVERLAY */
+
+.overlay{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.45);
+display:none;
+z-index:1500;
+}
+
+.overlay.active{
+display:block;
+}
+
+.dash-header{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:80px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:0 25px;
+background:white;
+box-shadow:0 4px 20px rgba(0,0,0,.05);
+z-index:1000;
+}
+
+.header-left{
+display:flex;
+align-items:center;
+gap:18px;
+}
+
+.logo img{
+height:40px;
+}
+
+/* HAMBURGER */
+
+.menu-toggle{
+display:none;
+border:none;
+background:none;
+font-size:22px;
+cursor:pointer;
+}
+
+/* SEARCH */
+
+.header-search{
+display:flex;
+align-items:center;
+gap:10px;
+background:#f1f5f9;
+padding:10px 18px;
+border-radius:30px;
+width:420px;
+}
+
+.header-search input{
+border:none;
+outline:none;
+background:transparent;
+width:100%;
+}
+
+/* ACTIONS */
+
+.header-actions{
+display:flex;
+align-items:center;
+gap:20px;
+}
+
+/* ===== TABLET ===== */
+
+@media (max-width:768px){
+
+.menu-toggle{
+display:block;
+}
+
+.header-search{
+display:none;
+}
+
+.profile-email{
+display:none;
+}
+
+.sidebar{
+position:fixed;
+left:-260px;
+top:80px;
+width:240px;
+height:calc(100vh - 80px);
+background:white;
+transition:0.35s;
+z-index:2000;
+box-shadow:8px 0 20px rgba(0,0,0,.1);
+}
+
+.sidebar.active{
+left:0;
+}
+
+.main{
+margin-left:0;
+padding:20px;
+}
+
+}
+
+/* ===== MOBILE ===== */
+
+@media (max-width:480px){
+
+.logo img{
+height:34px;
+}
+
+.welcome h1{
+font-size:22px;
+}
+
+.cards{
+grid-template-columns:1fr;
+}
+
+.grid{
+grid-template-columns:1fr;
+}
+
+}
+
+.overlay{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.4);
+display:none;
+z-index:1500;
+}
+
+.overlay.active{
+display:block;
+}
+
+@media (max-width:768px){
+
+.sidebar.active a span{
+display:inline;
+}
+
+.sidebar.active a{
+justify-content:flex-start;
+}
+
+.sidebar.active h3{
+display:block;
+}
+
+}
+
+.sidebar a i{
+min-width:20px;
+text-align:center;
+}
+
+/* CLINICAL TRIALS */
+
+.trial-card{
+background:white;
+border-radius:16px;
+padding:24px;
+width:100%;
+max-width:100%;
+}
+
+.trial-header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:15px;
+}
+
+.trial-header h2{
+margin-top:10px;
+}
+
+.sub{
+color:#64748b;
+margin-top:5px;
+}
+
+.phase{
+background:#2563eb;
+color:white;
+padding:4px 10px;
+border-radius:8px;
+font-size:12px;
+margin-right:8px;
+}
+
+.status-badge{
+background:#020617;
+color:white;
+padding:4px 10px;
+border-radius:8px;
+font-size:12px;
+}
+
+.status-badge.grey{
+background:#e5e7eb;
+color:#111;
+}
+
+.trial-icon{
+font-size:30px;
+color:#2563eb;
+}
+
+.trial-stats{
+display:flex;
+flex-wrap:wrap;
+gap:18px;
+margin-top:25px;
+}
+
+.trial-stats div{
+display:flex;
+gap:10px;
+align-items:center;
+}
+
+.purple{
+color:#9333ea;
+}
+
+.green{
+color:#16a34a;
+}
+
+.orange{
+color:#ea580c;
+}
+
+.progress-label{
+margin-top:25px;
+color:#64748b;
+font-size:14px;
+}
+
+.progress-bar{
+background:#e5e7eb;
+height:8px;
+border-radius:20px;
+margin-top:8px;
+}
+
+.progress-bar div{
+height:100%;
+background:#020617;
+border-radius:20px;
+}
+
+.trial-footer{
+display:flex;
+justify-content:space-between;
+align-items:center;
+flex-wrap:wrap;
+gap:15px;
+margin-top:25px;
+}
+
+.investigator{
+color:#64748b;
+font-size:14px;
+}
+
+.trial-actions{
+display:flex;
+gap:10px;
+}
+
+.btn-dark{
+background:#020617;
+color:white;
+border:none;
+padding:10px 18px;
+border-radius:10px;
+cursor:pointer;
+}
+
+.btn-green{
+background:#16a34a;
+color:white;
+border:none;
+padding:10px 18px;
+border-radius:10px;
+cursor:pointer;
+}
+
+/* ===== MOBILE HEADER FIX ===== */
+
+@media (max-width:768px){
+
+.dash-header{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+padding:0 15px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+}
+
+.header-left{
+display:flex;
+align-items:center;
+gap:10px;
+flex-shrink:0;
+}
+
+.logo img{
+height:34px;
+}
+
+.header-actions{
+display:flex;
+align-items:center;
+gap:10px;
+flex-shrink:0;
+}
+
+.bell{
+font-size:18px;
+}
+
+.profile{
+display:flex;
+align-items:center;
+gap:6px;
+}
+
+.profile i{
+font-size:18px;
+}
+
+}
+
+/* ===== GLOBAL MOBILE ALIGNMENT FIX ===== */
+
+@media (max-width:768px){
+
+.dashboard{
+margin-top:80px;
+width:100%;
+overflow-x:hidden;
+}
+
+.main{
+margin-left:0;
+padding:20px 16px;
+width:100%;
+}
+
+.dash-header{
+padding:0 16px;
+}
+
+.header-left{
+gap:10px;
+}
+
+.header-actions{
+gap:12px;
+}
+
+.logo img{
+height:34px;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+<div class="overlay" id="overlay"></div>
+
+<header class="dash-header">
+
+<div class="header-left">
+<button class="menu-toggle" id="menuToggle">
+<i class="fa-solid fa-bars"></i>
+</button>
+
+<div class="logo">
+<img src="assets/images/logo/stackly_logo.webp">
+</div>
+</div>
+
+<div class="header-search">
+<i class="fa-solid fa-search"></i>
+<input id="headerSearch" type="text" placeholder="Search samples, projects, patients...">
+</div>
+
+<div class="header-actions">
+
+<div class="bell" onclick="location.href='rd_404.html'">
+<i class="fa-regular fa-bell"></i>
+<span>3</span>
+</div>
+
+<div class="profile">
+<i class="fa-regular fa-user"></i>
+<div class="profile-info">
+<span class="profile-name">Researcher</span>
+<span class="profile-email">researcher@biotech.com</span>
+</div>
+</div>
+
+</div>
+
+</header>
+
+<div class="dashboard">
+
+<aside class="sidebar">
+
+<h3>Researcher Portal</h3>
+
+<a href="researcher_dash.html"><i class="fa-solid fa-house"></i><span>Dashboard</span></a>
+<a href="rp_dash.html"><i class="fa-solid fa-flask"></i><span>My Projects</span></a>
+<a href="rs_dash.html"><i class="fa-solid fa-vial"></i><span>Lab Samples</span></a>
+<a href="rq_dash.html"><i class="fa-solid fa-dna"></i><span>Sequencing</span></a>
+<a href="rct_dash.html" class="active"><i class="fa-solid fa-file-medical"></i><span>Clinical Trials</span></a>
+<a href="rst_dash.html"><i class="fa-solid fa-gear"></i><span>Settings</span></a>
+
+<a href="login.html" class="logout">
+<i class="fa-solid fa-right-from-bracket"></i>
+<span>Logout</span>
+</a>
+
+</aside>
+
+<main class="main">
+
+<div class="welcome">
+<h1>Clinical Trials</h1>
+<p>Manage clinical research studies and researcher enrollment</p>
+</div>
+
+
+<!-- TRIAL CARD 1 -->
+
+<div class="trial-card">
+
+<div class="trial-header">
+
+<div>
+
+<span class="phase">Phase II</span>
+<span class="status-badge">recruiting</span>
+
+<h2>Novel Immunotherapy for Melanoma</h2>
+
+<p class="sub">
+Melanoma • Immunotherapy Agent XYZ-123
+</p>
+
+</div>
+
+<i class="fa-solid fa-wave-square trial-icon"></i>
+
+</div>
+
+
+<div class="trial-stats">
+
+<div>
+<i class="fa-solid fa-users purple"></i>
+<div>
+<p>Enrollment</p>
+<b>45 / 100</b>
+</div>
+</div>
+
+<div>
+<i class="fa-solid fa-calendar green"></i>
+<div>
+<p>Started</p>
+<b>2026-01-01</b>
+</div>
+</div>
+
+<div>
+<i class="fa-solid fa-calendar orange"></i>
+<div>
+<p>Est. Completion</p>
+<b>2027-12-31</b>
+</div>
+</div>
+
+</div>
+
+
+<p class="progress-label">Enrollment Progress</p>
+
+<div class="progress-bar">
+<div style="width:45%"></div>
+</div>
+
+<div class="trial-footer">
+
+<div>
+<p class="investigator">Principal Investigator</p>
+<b>Dr. Emily Chen</b>
+</div>
+
+<div class="trial-actions">
+
+<button onclick="location.href='rd_404.html'" class="btn-dark">
+View Details
+</button>
+
+<button onclick="location.href='rd_404.html'" class="btn-green">
+Apply to Participate
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- TRIAL CARD 2 -->
+
+<div class="trial-card">
+
+<div class="trial-header">
+
+<div>
+
+<span class="phase">Phase III</span>
+<span class="status-badge grey">active</span>
+
+<h2>Gene Therapy for Sickle Cell Disease</h2>
+
+<p class="sub">
+Sickle Cell Disease • CRISPR-based Gene Editing
+</p>
+
+</div>
+
+<i class="fa-solid fa-wave-square trial-icon"></i>
+
+</div>
+
+
+<div class="trial-stats">
+
+<div>
+<i class="fa-solid fa-users purple"></i>
+<div>
+<p>Enrollment</p>
+<b>180 / 200</b>
+</div>
+</div>
+
+<div>
+<i class="fa-solid fa-calendar green"></i>
+<div>
+<p>Started</p>
+<b>2025-03-15</b>
+</div>
+</div>
+
+<div>
+<i class="fa-solid fa-calendar orange"></i>
+<div>
+<p>Est. Completion</p>
+<b>2026-09-30</b>
+</div>
+</div>
+
+</div>
+
+
+<p class="progress-label">Enrollment Progress</p>
+
+<div class="progress-bar">
+<div style="width:90%"></div>
+</div>
+
+<div class="trial-footer">
+
+<div>
+<p class="investigator">Principal Investigator</p>
+<b>Dr. Maria Garcia</b>
+</div>
+
+<div class="trial-actions">
+
+<button onclick="location.href='rd_404.html'" class="btn-dark">
+View Details
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</main>
+
+</div>
+
+<script>
+
+const searchInput = document.getElementById("headerSearch");
+
+searchInput.addEventListener("keypress", function(e){
+
+if(e.key === "Enter"){
+
+const value = searchInput.value.trim();
+
+if(value !== ""){
+window.location.href = "rd_404.html";
+}
+
+}
+
+});
+
+</script>
+
+<script>
+
+const menuToggle = document.getElementById("menuToggle");
+const sidebar = document.querySelector(".sidebar");
+const overlay = document.getElementById("overlay");
+
+menuToggle.addEventListener("click", () => {
+sidebar.classList.toggle("active");
+overlay.classList.toggle("active");
+});
+
+overlay.addEventListener("click", () => {
+sidebar.classList.remove("active");
+overlay.classList.remove("active");
+});
+
+</script>
+
+</body>
+</html>
