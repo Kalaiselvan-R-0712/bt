@@ -441,30 +441,21 @@ if(!valid) return;
 const userRole = role.value;
 const userEmail = email.value;
 
-/* ADMIN LOGIN */
+// SAVE DATA
+localStorage.setItem("userRole", userRole);
+localStorage.setItem("userEmail", userEmail);
+localStorage.setItem("isLoggedIn", "true");
 
-if(userRole==="Administrator" && userEmail==="admin@biotech.com"){
-window.location.href="admin_dash.html";
-return;
+// REDIRECT
+if(userRole === "Administrator"){
+window.location.href = "admin_dash.html";
 }
-
-/* RESEARCHER LOGIN */
-
-if(userRole==="Researcher" && userEmail==="researcher@biotech.com"){
-window.location.href="researcher_dash.html";
-return;
+else if(userRole === "Researcher"){
+window.location.href = "researcher_dash.html";
 }
-
-/* PATIENT LOGIN */
-
-if(userRole==="Patient" && userEmail==="patient@biotech.com"){
-window.location.href="patient_dash.html";
-return;
+else if(userRole === "Patient"){
+window.location.href = "patient_dash.html";
 }
-
-/* INVALID LOGIN */
-
-alert("Invalid credentials for selected role.");
 
 });
 

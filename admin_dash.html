@@ -933,8 +933,8 @@ max-width:100%;
 <div class="profile">
 <i class="fa-regular fa-user"></i>
 <div class="profile-info">
-<span class="profile-name">Admin</span>
-<span class="profile-email">admin@biotech.com</span>
+<span class="profile-name" id="profileName"></span>
+<span class="profile-email" id="profileEmail"></span>
 </div>
 </div>
 
@@ -955,7 +955,7 @@ max-width:100%;
 <a href="abl_dash.html"><i class="fa-solid fa-credit-card"></i><span>Billing</span></a>
 <a href="ast_dash.html"><i class="fa-solid fa-gear"></i><span>Settings</span></a>
 
-<a href="login.html" class="logout">
+<a href="#" onclick="logoutUser()" class="logout">
 <i class="fa-solid fa-right-from-bracket"></i>
 <span>Logout</span>
 </a>
@@ -1037,7 +1037,7 @@ max-width:100%;
 
 <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
 <h2>Active Research Projects</h2>
-<button onclick="location.href='rd_404.html'" style="
+<button onclick="location.href='ad_404.html'" style="
 background:#020617;
 color:white;
 border:none;
@@ -1245,6 +1245,34 @@ enabled: true
 }
 }
 });
+
+</script>
+
+<script>
+
+// ===== SESSION CHECK =====
+const email = localStorage.getItem("userEmail");
+const role = localStorage.getItem("userRole");
+
+// BLOCK DIRECT ACCESS
+if(!email || !role){
+window.location.href = "login.html";
+}
+
+// ADMIN ONLY ACCESS
+if(role !== "Administrator"){
+window.location.href = "login.html";
+}
+
+// SET USER DATA
+document.getElementById("profileEmail").textContent = email;
+document.getElementById("profileName").textContent = role;
+
+// LOGOUT
+function logoutUser(){
+localStorage.clear();
+window.location.href = "login.html";
+}
 
 </script>
 

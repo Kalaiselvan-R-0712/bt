@@ -1094,8 +1094,8 @@ height:34px;
 <div class="profile">
 <i class="fa-regular fa-user"></i>
 <div class="profile-info">
-<span class="profile-name">Researcher</span>
-<span class="profile-email">researcher@biotech.com</span>
+<span class="profile-name" id="profileName"></span>
+<span class="profile-email" id="profileEmail"></span>
 </div>
 </div>
 
@@ -1332,6 +1332,34 @@ overlay.addEventListener("click", () => {
 sidebar.classList.remove("active");
 overlay.classList.remove("active");
 });
+
+</script>
+
+<script>
+
+// ===== SESSION CHECK =====
+const email = localStorage.getItem("userEmail");
+const role = localStorage.getItem("userRole");
+
+// BLOCK DIRECT ACCESS
+if(!email || !role){
+window.location.href = "login.html";
+}
+
+// ALLOW ONLY RESEARCHER
+if(role !== "Researcher"){
+window.location.href = "login.html";
+}
+
+// SET PROFILE DATA
+document.getElementById("profileEmail").textContent = email;
+document.getElementById("profileName").textContent = role;
+
+// LOGOUT FUNCTION
+function logoutUser(){
+localStorage.clear();
+window.location.href = "login.html";
+}
 
 </script>
 

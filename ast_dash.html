@@ -980,7 +980,7 @@ grid-template-columns:1fr;
 
 <div class="header-actions">
 
-<div class="bell" onclick="location.href='pd_404.html'">
+<div class="bell" onclick="location.href='ad_404.html'">
 <i class="fa-regular fa-bell"></i>
 <span>3</span>
 </div>
@@ -988,8 +988,8 @@ grid-template-columns:1fr;
 <div class="profile">
 <i class="fa-regular fa-user"></i>
 <div class="profile-info">
-<span class="profile-name">Admin</span>
-<span class="profile-email">admin@biotech.com</span>
+<span class="profile-name" id="profileName"></span>
+<span class="profile-email" id="profileEmail"></span>
 </div>
 </div>
 
@@ -1010,7 +1010,7 @@ grid-template-columns:1fr;
 <a href="abl_dash.html"><i class="fa-solid fa-credit-card"></i><span>Billing</span></a>
 <a href="ast_dash.html" class="active"><i class="fa-solid fa-gear"></i><span>Settings</span></a>
 
-<a href="login.html" class="logout">
+<a href="#" onclick="logoutUser()" class="logout">
 <i class="fa-solid fa-right-from-bracket"></i>
 <span>Logout</span>
 </a>
@@ -1041,7 +1041,7 @@ grid-template-columns:1fr;
 
 <div>
 <label>Email Address</label>
-<input type="email" value="admin@biotech.com" style="width:100%;padding:10px;margin-top:6px;border:1px solid #e2e8f0;border-radius:8px;">
+<input type="email" id="settingsEmail" style="width:100%;padding:10px;margin-top:6px;border:1px solid #e2e8f0;border-radius:8px;">
 </div>
 
 <div>
@@ -1235,6 +1235,37 @@ overlay.addEventListener("click", () => {
 sidebar.classList.remove("active");
 overlay.classList.remove("active");
 });
+
+</script>
+
+<script>
+
+// ===== SESSION CHECK =====
+const email = localStorage.getItem("userEmail");
+const role = localStorage.getItem("userRole");
+
+// BLOCK DIRECT ACCESS
+if(!email || !role){
+window.location.href = "login.html";
+}
+
+// ADMIN ONLY ACCESS
+if(role !== "Administrator"){
+window.location.href = "login.html";
+}
+
+// SET HEADER DATA
+document.getElementById("profileEmail").textContent = email;
+document.getElementById("profileName").textContent = role;
+
+// 👉 ADD THIS LINE (IMPORTANT)
+document.getElementById("settingsEmail").value = email;
+
+// LOGOUT
+function logoutUser(){
+localStorage.clear();
+window.location.href = "login.html";
+}
 
 </script>
 
