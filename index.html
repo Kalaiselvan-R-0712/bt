@@ -24,6 +24,18 @@ color:#0f172a;
 overflow-x:hidden;
 }
 
+.hero h1{
+    margin-bottom: 15px;
+}
+
+.hero p{
+    margin-bottom: 25px;
+}
+
+.hero h1 span{
+    margin-left: 6px;
+}
+
 /* GLOBAL TRANSITIONS */
 
 a,button{
@@ -101,12 +113,13 @@ backdrop-filter:blur(10px);
 }
 
 .logo img{
-height:42px;
-transition:.4s;
+    height:42px;
+    transition: transform 0.3s ease;
+    will-change: transform;
 }
 
 .logo:hover img{
-transform:scale(1.1) rotate(-5deg);
+    transform: scale(1.04);
 }
 
 /* NAV */
@@ -251,10 +264,10 @@ animation:float 4s ease-in-out infinite;
 /* TITLE */
 
 .hero h1{
-font-size:72px;
-font-weight:800;
-line-height:1.1;
-margin-bottom:25px;
+    font-size: clamp(38px, 5vw, 56px);
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.5px;
 }
 
 .hero h1 span{
@@ -265,9 +278,9 @@ color:#3ea6ff;
 
 .hero p{
 color:#e2e8f0;
-font-size:18px;
-max-width:650px;
-margin-bottom:45px;
+    font-size:16px;
+    line-height:1.6;
+    max-width:600px;
 }
 
 /* BUTTONS */
